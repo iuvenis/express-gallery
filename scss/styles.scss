@@ -358,7 +358,77 @@ height: 10%;
 }
 }
 
+// SINGLE
 // ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ *
+
+#container {
+  padding: 100px 0 100px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  height: 900px;
+}
+
+#single {
+  flex: 0 0 70%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+  #image {
+    flex: 1 0 50%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+
+  #description {
+    flex: 0 0 auto;
+    margin-bottom: 10px;
+  }
+
+  #buttons {
+    flex: 0 0 auto;
+  }
+}
+
+#multiple {
+  flex: 0 0 25%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  height: 100%;
+  .sideContainer {
+    flex: 0 0 33%;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    .sideImageLink {
+      flex: 1 0 80%;
+      margin-bottom: 10px;
+      background-size: cover;
+      background-position: center;
+    }
+    .sideInfo {
+      flex: 0 0 20%;
+    }
+  }
+}
+
+.button {
+  padding: 10px;
+  border-width: 0;
+  background-color: #008CBA;
+  border-radius: 3px;
+  text-align: center;
+
+  &:hover {
+    background-color:
+  }
+}
 
 
 
