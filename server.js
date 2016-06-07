@@ -14,6 +14,8 @@ const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const setUpPassport = require('./passport/setUpPassport');
 const favicon = require('serve-favicon');
+const User = require('../models').User;
+
 
 const app = express();
 const db = require('./models');
@@ -33,8 +35,37 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
-setUpPassport();
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
+    .then((user) => {
+      done(null, user);
+    });
+  });
+
+  passport.use('login', new LocalStrategy(
+    (username, password, done) => {
+    User.findOne({where: {username: username}})
+    .then((user) => {
+      if(!user) {
+        return done(null, false, {message: "The username or password is invalid"});
+      }
+      bcrypt.compare(password, user.password, (err, res) => {
+        if(res === true) {
+          return done(null, user);
+        } else {
+          return done(null, false, {message: "The username or password is invalid"});
+        }
+      });
+    })
+    .catch((err) => {
+      return done(err);
+    });
+  }));
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
@@ -53,6 +84,12 @@ app.use('/logout', (req, res) => {
 
 app.get('/', (req, res) => {
   res.redirect('/gallery');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile('/public/index.html', {
+    root: __dirname
+  });
 });
 
 app.use((err, req, res, next) => {
