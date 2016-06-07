@@ -25,3 +25,9 @@ A multi-user Gallery where any logged-in user can access these routes:
     - `description` : TextArea
 - `PUT /gallery/:id` updates a single gallery photo identified by the `:id` param
 - `DELETE /gallery/:id` to delete a single gallery photo identified by the `:id` param
+
+---
+
+![screenshot](https://cloud.githubusercontent.com/assets/13547790/15878421/8356fc22-2cb6-11e6-8c0d-96864c90c526.png)
+
+
