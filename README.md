@@ -1,7 +1,7 @@
 Express Gallery
 ===============
 
-Created a fully responsive photo gallery site using Express and Sequelize back-end and Jade used for templating.
+A fully responsive photo gallery site using Express and Sequelize back-end and Jade used for templating.
 Livereload and gulp were used for watching and compiling sass
 
 ---
